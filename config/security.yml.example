@@ -1,6 +1,6 @@
 production: &default
   # replace this with a random string of at least 20 characters
-  encryption_key: 12345
+  encryption_key: uec2yEyU6W4DKEcix4yPzpaxx
   lti_iss: 'https://canvas.instructure.com'
 
 development:
