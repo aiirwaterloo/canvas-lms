@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+echo "💡 Entrypoint running at $(date)"
 
 # Ensure critical configs exist
 if [ ! -f config/database.yml ]; then
