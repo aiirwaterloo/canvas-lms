@@ -10,6 +10,12 @@ if [ ! -f config/database.yml ]; then
   cp config/dynamic_settings.yml.example config/dynamic_settings.yml
 fi
 
+if [ ! -f config/security.yml ]; then
+  echo "encryption_key: \"$(openssl rand -hex 32)\"" > config/security.yml
+  echo "encryption_keys:" >> config/security.yml
+  echo "  - \"$(openssl rand -hex 32)\"" >> config/security.yml
+fi
+
 # Compile assets if needed
 if [ ! -d public/assets ]; then
   echo "Compiling assets..."
