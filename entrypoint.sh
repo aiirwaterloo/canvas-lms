@@ -1,24 +1,14 @@
 #!/bin/bash
 set -e
 echo "💡 Entrypoint running at $(date)"
-echo "----- security.yml contents -----"
-cat config/security.yml || echo "File missing!"
+echo "----- database.yml contents -----"
+cat config/database.yml || echo "File missing!"
 echo "---------------------------------"
 
-# Ensure critical configs exist
-if [ ! -f config/database.yml ]; then
-  echo "Missing config/database.yml. Copying example configs..."
-  for config in amazon_s3 database vault_contents delayed_jobs domain file_store outgoing_mail security external_migration; do
-    cp config/$config.yml.example config/$config.yml
-  done
-  cp config/dynamic_settings.yml.example config/dynamic_settings.yml
-fi
-
-if [ ! -f config/security.yml ]; then
-  echo "encryption_key: \"$(openssl rand -hex 32)\"" > config/security.yml
-  echo "encryption_keys:" >> config/security.yml
-  echo "  - \"$(openssl rand -hex 32)\"" >> config/security.yml
-fi
+for file in /mnt/config/*.yml; do
+  filename=$(basename "$file")
+  cp "$file" config/"$filename"
+done
 
 # Compile assets if needed
 if [ ! -d public/assets ]; then
