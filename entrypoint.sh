@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 echo "💡 Entrypoint running at $(date)"
+echo "----- security.yml contents -----"
+cat config/security.yml || echo "File missing!"
+echo "---------------------------------"
 
 # Ensure critical configs exist
 if [ ! -f config/database.yml ]; then
