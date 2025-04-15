@@ -1,9 +1,5 @@
 #!/bin/bash
 set -e
-echo "💡 Entrypoint running at $(date)"
-echo "----- database.yml contents -----"
-cat config/database.yml || echo "File missing!"
-echo "---------------------------------"
 
 for file in /mnt/config/*.yml; do
   filename=$(basename "$file")
@@ -18,7 +14,6 @@ done
 #  touch Gemfile.lock log/production.log
 #  bundle exec rake canvas:compile_assets
 #fi
-"Rsyncing.."
 rsync -a /mnt/public/ public/
 
 # Start the app
