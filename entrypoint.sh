@@ -19,7 +19,7 @@ done
 #  bundle exec rake canvas:compile_assets
 #fi
 "Rsyncing.."
-rsync -a /mnt/public/dist/ public/dist/
+rsync -a /mnt/public/ public/
 
 # Start the app
 echo "Starting Puma..."
