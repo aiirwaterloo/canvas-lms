@@ -17,6 +17,9 @@ if [ ! -d public/dist ] || [ ! -f public/dist/gulp-manifest.json ] || [ ! -f pub
   bundle exec rake canvas:compile_assets
 fi
 
+# Start Delayed Job in the background
+echo "Starting Delayed Job worker…"
+bundle exec script/delayed_job start
 
 # Start the app
 echo "Starting Puma..."
